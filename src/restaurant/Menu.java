@@ -15,10 +15,15 @@ public class Menu {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     String menuUpdate = simpleDateFormat.format(lastUpdated);
 
-    public void addItem(MenuItem newItem){
-
+    public void addItem(MenuItem newItem) {
+        for (MenuItem listing : menuListings){
+            if (listing.equals(newItem)) {
+                throw new IllegalArgumentException("That item is already on the menu!");
+            };
+        }
         this.menuListings.add(newItem);
     }
+
 
     public void deleteItem(MenuItem itemToBeDeleted){
         this.menuListings.remove(itemToBeDeleted);

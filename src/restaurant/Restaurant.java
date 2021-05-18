@@ -19,6 +19,9 @@ public class Restaurant {
         System.out.println(natesDeli);
         System.out.println(potatoSalad);
         System.out.println(lavaCake.equals(chocolateCake));
+        natesDeli.addItem(potatoSalad);
+        natesDeli.addItem(chocolateCake);
+
 
     }
 }
