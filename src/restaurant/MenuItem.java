@@ -6,9 +6,45 @@ public class MenuItem {
   private double price;
   private String description;
   private String category;
-  private Date dateAdded = new Date();
+  private final Date dateAdded;
   public boolean isItemNew;
 
+
+  public MenuItem (double price, String description, String category){
+      this.price = price;
+      this.description = description;
+      this.category = category;
+      this.dateAdded = new Date();
+      this.isItemNew = true;
+  }
+
+  @Override
+  public String toString(){
+      if (this.isItemNew == true) {
+          return "NEW! " + category + " - " + description + ": " + price;
+      } else {
+          return category + " - " + description + ": " + price;
+      }
+  }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(price, description, category);
+    }
+
+    public boolean equals(Object toBeCompared){
+      if (toBeCompared == this) {
+          return true;
+      }
+      if (toBeCompared == null){
+          return false;
+      }
+      if (toBeCompared.getClass() != getClass()) {
+          return false;
+      }
+      MenuItem theItem = (MenuItem) toBeCompared;
+      return theItem.getPrice() == getPrice() && theItem.getCategory() == getCategory() && theItem.getDescription() == getDescription();
+  }
 
     public double getPrice() {
         return price;
@@ -39,11 +75,15 @@ public class MenuItem {
     }
 
     void setCategory(String category){
-        this.category = category;
+        if (category.equals("Appetizer") || category.equals("Main Course") || category.equals("Dessert")){
+            this.category = category;
+        }
+
     }
 
-    void setIsItemNew(boolean isItemNew){
-        this.isItemNew = isItemNew;
+    void setIsItemNew(boolean aisItemNew){
+        isItemNew = aisItemNew;
     }
+
 }
 
